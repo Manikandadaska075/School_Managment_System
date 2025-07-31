@@ -26,12 +26,10 @@ class DepartmentStudentListView(APIView):
 
         try:
             teacher_profile = TeacherProfile.objects.get(teacher_id=user)
-            subject_name = teacher_profile.subject  # e.g., "Python"
+            subject_name = teacher_profile.subject 
 
-            # Get the Department object for that subject name
             department = get_object_or_404(Department, subject=subject_name)
 
-            # Now filter by subject_code (which is a FK to Department)
             students = SubjectMarks.objects.filter(subject_code=department)
 
             serializer = StudentMarkDetailSerializer(students, many=True)
@@ -177,8 +175,6 @@ class StudentTotalMarksView(APIView):
             "overall_grade": overall_grade
         }, status=200)
 
-# views.py
-
 class TeacherSubjectMarksView(APIView):
     permission_classes = [IsAuthenticated, IsDepartmentTeacher]
 
@@ -250,7 +246,6 @@ class HODDepartmentStatsView(APIView):
     def get(self, request):
         user = request.user
 
-        # Get HOD profile
         try:
             profile = TeacherProfile.objects.get(teacher_id=user, position='HOD')
         except TeacherProfile.DoesNotExist:
@@ -258,7 +253,6 @@ class HODDepartmentStatsView(APIView):
 
         department_name = profile.department
 
-        # Get all subjects in the department
         subjects = Department.objects.filter(department_name=department_name)
         if not subjects.exists():
             return Response({"error": "No subjects found in this department."}, status=404)

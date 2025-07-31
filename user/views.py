@@ -54,7 +54,7 @@ class RegistrationByAdmin(APIView):
     
 
 class DeleteUserByAdmin(APIView):
-    permission_classes = [IsAuthenticated, IsCustomUser]  # Adjust to [IsAdminUser] or your custom permission
+    permission_classes = [IsAuthenticated, IsCustomUser]
 
     def delete(self, request):
         user_id = request.query_params.get('user_id')

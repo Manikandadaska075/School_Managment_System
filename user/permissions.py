@@ -1,6 +1,5 @@
 from rest_framework.permissions import BasePermission
 from user.models import TeacherProfile
-# from Academic.models import Department
 
 class IsCustomUser(BasePermission):
     def has_permission(self, request, view):

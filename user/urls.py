@@ -2,7 +2,7 @@ from django.urls import path
 from user import views
 
 urlpatterns=[
-    path('AdminRegistration/', views.AdminRegistration.as_view(), name='admin-register'),
+    path('AdminRegistration/', views.AdminRegistration.as_view()),
     path('AdminLogin/', views.AdminLogin.as_view()),
     path('RegistrationByAdmin/',views.RegistrationByAdmin.as_view()),
     path('delete-userbyadmin/', views.DeleteUserByAdmin.as_view()),
